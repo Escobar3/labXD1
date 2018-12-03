@@ -9,9 +9,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import VO.Producto;
-import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -19,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class ProductoDAO implements IBaseDatos<Producto> {
 
-    public Producto find(int id) throws SQLException, URISyntaxException {
+    public Producto find(int id) throws SQLException {
         Producto resultado = null;
         String query = "Select * from Producto Where id_producto =" + id;
         Connection connection = Conexion.getConnection();
@@ -55,12 +52,7 @@ public class ProductoDAO implements IBaseDatos<Producto> {
     public List findAll() throws SQLException {
         List<Producto> productos = null;
         String query = "Select * from Producto ";
-        Connection connection = null;
-        try {
-            connection = Conexion.getConnection();
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Connection connection = Conexion.getConnection();
         System.out.println("asdfsdgsgsdgsgdcdgdgv");
         try {
             Statement st = connection.createStatement();
@@ -105,12 +97,7 @@ public class ProductoDAO implements IBaseDatos<Producto> {
     @Override
     public boolean insert(Producto t) throws SQLException {
         boolean result = false;
-        Connection connection = null;
-        try {
-            connection = Conexion.getConnection();
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Connection connection = Conexion.getConnection();
         String query = " insert into Producto(id_producto,nombre,precio,cantidad,id_sucursal ) values (?,?,?,?,?)";
         PreparedStatement preparedStmt = null;
         try {
@@ -130,12 +117,7 @@ public class ProductoDAO implements IBaseDatos<Producto> {
     @Override
     public boolean update(Producto t) throws SQLException {
         boolean result = false;
-        Connection connection = null;
-        try {
-            connection = Conexion.getConnection();
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Connection connection = Conexion.getConnection();
         String query
                 = "update Producto set cantidad = ? where id_producto = ?";
         PreparedStatement preparedStmt = null;
@@ -156,7 +138,7 @@ public class ProductoDAO implements IBaseDatos<Producto> {
 
     }
 
-    public List ConsulP_item() throws SQLException, URISyntaxException {
+    public List ConsulP_item() throws SQLException {
         System.out.println("asdasd");
         List<Producto> productos = null;
         System.out.println("sadsada");

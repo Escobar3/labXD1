@@ -11,9 +11,6 @@ import java.util.List;
 import VO.Item_vent;
 import VO.Producto;
 import VO.Venta;
-import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -27,7 +24,7 @@ public class Item_ventDAO implements IBaseDatos<Item_vent> {
         return connection;
     }
 
-    public Item_vent find(int id) throws SQLException, URISyntaxException {
+    public Item_vent find(int id) throws SQLException {
         Item_vent resultado = null;
         String query = "Select * from item_vent Where id_producto =" + id;
         Connection connection = Conexion.getConnection();
@@ -74,12 +71,7 @@ public class Item_ventDAO implements IBaseDatos<Item_vent> {
         Venta venta = new Venta();
         Producto producto = new Producto();
         String query = "SELECT * FROM item_vent";
-        Connection connection = null;
-        try {
-            connection = Conexion.getConnection();
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(Item_ventDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Connection connection = Conexion.getConnection();
         try {
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -123,12 +115,7 @@ public class Item_ventDAO implements IBaseDatos<Item_vent> {
     @Override
     public boolean insert(Item_vent t) throws SQLException {
         boolean result = false;
-        Connection connection = null;
-        try {
-            connection = Conexion.getConnection();
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(Item_ventDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Connection connection = Conexion.getConnection();
         String query = " insert into item_vent (valor,cantidad,id_ventas,id_producto) values (?,?,?,?)";
         PreparedStatement preparedStmt = null;
         try {
